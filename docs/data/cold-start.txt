@@ -1,0 +1,2 @@
+mode off, worker awake:   median 18.0 ms  max 24.8
+mode off, worker stopped: median 19.7 ms  max 68.6

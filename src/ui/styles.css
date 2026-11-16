@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* The panel is built into two places (the extension and the demo site). Name where its
+   classes are used, so both builds find them whatever folder they start from. */
+@source "./";
+@source "../../site";
+
+:root {
+  color-scheme: light;
+  --canvas: #f6f5f1;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --muted: #52514e;
+  --faint: #6b6a66;
+  --line: #e1e0d9;
+  --accent: #1c5cab;
+  --accent-soft: rgba(42, 120, 214, 0.1);
+  --good: #0ca30c;
+  --warning: #c98500;
+  --critical: #d03b3b;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --canvas: #0d0d0d;
+    --surface: #1a1a19;
+    --ink: #f0efec;
+    --muted: #c3c2b7;
+    --faint: #9b9a94;
+    --line: #2c2c2a;
+    --accent: #6da7ec;
+    --accent-soft: rgba(57, 135, 229, 0.16);
+  }
+}
+
+@theme inline {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-good: var(--good);
+  --color-warning: var(--warning);
+  --color-critical: var(--critical);
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-ink antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+}
+
+@utility card {
+  @apply rounded-lg border border-line bg-surface;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-ink text-canvas hover:opacity-85;
+}
+@utility btn-secondary {
+  @apply btn border border-line bg-surface text-ink hover:border-faint;
+}
+@utility input {
+  @apply w-full rounded-md border border-line bg-surface px-2 py-1.5 text-xs text-ink placeholder:text-faint focus:border-accent focus:outline-none;
+}
+@utility kicker {
+  @apply font-mono text-[11px] uppercase tracking-wider text-faint;
+}

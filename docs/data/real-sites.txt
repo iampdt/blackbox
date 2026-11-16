@@ -1,0 +1,26 @@
+Real sites, recorded then replayed with fetch and XMLHttpRequest blocked at the network. 2026-11-17
+
+Tollgate dashboard (React, fetch, streamed POST)
+   recorded 3 API calls (0 by XMLHttpRequest, 0 streamed)
+   replay: 3 answered from the recording, 0 with no recorded answer, 0 reached the network and were blocked
+   the visit completed; what the visitor could read was identical (2478 characters)
+
+CodePilot demo (React, static JSON runs)
+   recorded 1 API calls (0 by XMLHttpRequest, 0 streamed)
+   replay: 1 answered from the recording, 0 with no recorded answer, 0 reached the network and were blocked
+   the visit completed; what the visitor could read was identical (2351 characters)
+
+Portfolio (Next.js, client-side navigation)
+   recorded 10 API calls (0 by XMLHttpRequest, 0 streamed)
+   replay: 5 answered from the recording, 7 with no recorded answer, 0 reached the network and were blocked
+   the visit completed; what the visitor could read was identical (11787 characters)
+     no answer for: GET /projects/notification-platform?_rsc=1pn8p
+     no answer for: GET /projects/notification-platform?_rsc=wxxc5
+     no answer for: GET /projects/notification-platform?_rsc=37jp8
+     no answer for: GET /projects/notification-platform?_rsc=1wofu
+
+Lineless (React, live queue over WebSocket)
+   recorded 1 API calls (0 by XMLHttpRequest, 0 streamed); the page also opened 2 WebSockets, which are not intercepted
+   replay: 1 answered from the recording, 0 with no recorded answer, 0 reached the network and were blocked
+   the visit completed; what the visitor could read was identical (1217 characters)
+

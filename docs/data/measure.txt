@@ -1,0 +1,37 @@
+Chromium with the built extension, sample app on a local server. 2026-11-17
+
+1. One request from the page, start to complete body (300 in a row, local server)
+   no extension                                 median   0.70 ms   p95   1.20 ms
+   Blackbox on, mode off                        median   0.70 ms   p95   1.40 ms
+   recording                                    median   2.00 ms   p95   5.40 ms
+   replaying (no network)                       median   0.10 ms   p95   0.20 ms
+   recording adds 1.30 ms per request at the median
+
+2. Page start: navigation to the task list on screen (20 reloads)
+   no extension                                 median   9.60 ms   p95  11.20 ms
+   Blackbox on, mode off                        median  15.80 ms   p95  25.20 ms
+   recording                                    median  19.60 ms   p95  42.20 ms
+   replaying, backend switched off              median  13.30 ms   p95  39.70 ms
+   being switched on adds 6.20 ms to page start at the median
+
+3. Does a replay show the visitor what the live session did? (8 sessions; compared after every step)
+   session                                  requests   ordered answers   always the first answer
+   look, then leave                                3   same              same
+   add one task                                    5   same              different
+   add, tick, delete, summarise                   10   same              different
+   tick and untick the same task                   9   same              different
+   three adds, summarise between each             11   same              different
+   empty the list                                 10   same              different
+   change, reload the page, change again           9   same              different
+   same change twice                               9   same              different
+   identical to the live session: 8 of 8 with ordered answers, 1 of 8 with always-the-first
+
+4. Replaying a different session from the one recorded (ordered answers)
+   recorded: add "Buy milk", then tick "Renew passport". Replayed: tick first, then add.
+   a real backend would show, after the tick:  [x] Book train tickets | [x] Renew passport | [ ] Call the electrician
+   after the tick, the list shows:  [x] Book train tickets | [ ] Renew passport | [ ] Call the electrician | [ ] Buy milk
+   after the add, the list shows:   [x] Book train tickets | [x] Renew passport | [ ] Call the electrician | [ ] Buy milk
+   then a task that was never recorded: the app shows an error ("Failed to fetch (Blackbox is replaying and has no recorded answer for POST http://localhost:58310/api/tasks)")
+   requests that reached the dead server: 0
+
+5. Size: the script injected into a page is 14.7 KB; its bridge is 1.0 KB; the background worker 6.2 KB.

@@ -1,0 +1,37 @@
+{
+  "name": "blackbox",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "An API flight recorder for the browser: records every API call a web app makes and replays them, so the app keeps working when its backend doesn't.",
+  "scripts": {
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "build": "node scripts/build.mjs",
+    "e2e": "playwright test",
+    "check": "npm run typecheck && npm test && npm run build",
+    "package": "npm run build && cd dist/extension && zip -qr ../blackbox-extension.zip . && cd ../.. && ls -la dist/blackbox-extension.zip",
+    "deploy": "npm run check && wrangler deploy"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261116.1",
+    "@playwright/test": "^1.50.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/chrome": "^0.1.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "esbuild": "^0.28.0",
+    "tailwindcss": "^4.3.5",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.163.0"
+  }
+}
