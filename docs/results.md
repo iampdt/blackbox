@@ -145,4 +145,4 @@ No blocked request was needed in any of them: nothing reached the network.
 ## 6. Size
 
 The script injected into a page is 14.7 KB; the bridge beside it 1.0 KB; the background
-worker 6.2 KB. The extension, panel included, is about 330 KB unpacked.
+worker 6.2 KB. The extension, panel included, is about 300 KB unpacked and 98 KB as the release zip.
